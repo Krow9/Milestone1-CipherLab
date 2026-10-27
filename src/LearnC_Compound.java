@@ -11,11 +11,11 @@
  */
 public class LearnC_Compound {
     public static void main(String[] args) {
-        int age = 16;
+        int age = 40;
         boolean hasPermit = true;
 
         System.out.println("Can drive: " + (age >= 16 && hasPermit));
-        System.out.println("Teen: " + (age >= 13 && age <= 19));
+        System.out.println("Teen: " + (age >= 13 ||age <= 19));
         System.out.println("Free entry: " + (age < 5 || age >= 65));
         System.out.println("No permit: " + !hasPermit);
 
@@ -23,7 +23,7 @@ public class LearnC_Compound {
         // count is 0, so the left side is false and the division never runs.
         int total = 10;
         int count = 0;
-        if (count != 0 && total / count > 2) {
+        if (total / count > 2 && count != 0) {
             System.out.println("Big average");
         } else {
             System.out.println("Safe! No division by zero.");

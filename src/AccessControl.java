@@ -1,3 +1,6 @@
+import com.sun.org.apache.xpath.internal.functions.FuncStringLength;
+import sun.security.util.Length;
+
 import java.util.Scanner;
 
 /**
@@ -9,7 +12,7 @@ import java.util.Scanner;
  *
  * Check your work any time by running AccessControlTester.
  *
- * Name: ______________________
+ * Name: Krow Jennings
  */
 public class AccessControl {
 
@@ -23,9 +26,15 @@ public class AccessControl {
      * isValidLength("abc")          -> false
      * isValidLength("password123")  -> true
      */
+
+
+
     public static boolean isValidLength(String password) {
         // TODO - delete the next line and write your code
-        throw new UnsupportedOperationException("not started");
+        FuncStringLength FunctionString;
+        if (FunctionString(password) >= 8 && (FuncStringLength(password) <= 64){
+            return
+        }
     }
 
     /**
@@ -70,7 +79,11 @@ public class AccessControl {
      */
     public static boolean isAfterHours(int hour) {
         // TODO - delete the next line and write your code
-        throw new UnsupportedOperationException("not started");
+        if (hour >= 7 && hour <= 17.59){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -91,7 +104,26 @@ public class AccessControl {
      */
     public static String accessDecision(String role, int hour, boolean correctPassword, int failedAttempts) {
         // TODO - delete the next line and write your code
-        throw new UnsupportedOperationException("not started");
+        if (accessLevel(role) == 0) {
+            System.out.println("UNKNOWN ROLE");
+            return "UNKNOWN ROLE";
+        } else {
+            if (failedAttempts >= 3) {
+                System.out.println("LOCKED");
+                return "LOCKED";
+            } else {
+                if (correctPassword == false){
+                    System.out.println("DENIED");
+                    return "DENIED";
+                } else {
+                    if (isAfterHours(hour) == true) {
+                        System.out.println("GRANTED");
+                        return "GRANTED";
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**
