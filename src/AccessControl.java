@@ -31,9 +31,11 @@ public class AccessControl {
 
     public static boolean isValidLength(String password) {
         // TODO - delete the next line and write your code
-        FuncStringLength FunctionString;
-        if (FunctionString(password) >= 8 && (FuncStringLength(password) <= 64){
-            return
+
+        if ( (password.length() >= 8) && (password.length() <= 64) ) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -66,7 +68,13 @@ public class AccessControl {
      */
     public static boolean canLogin(boolean correctPassword, int failedAttempts, boolean accountLocked) {
         // TODO - delete the next line and write your code
-        throw new UnsupportedOperationException("not started");
+        boolean canlogin;
+        if (correctPassword == true && failedAttempts < 3 && accountLocked == false ) {
+            canlogin = true;
+        } else {
+            canlogin= false;
+        }
+        return canlogin;
     }
 
     /**
@@ -117,8 +125,19 @@ public class AccessControl {
                     return "DENIED";
                 } else {
                     if (isAfterHours(hour) == true) {
-                        System.out.println("GRANTED");
-                        return "GRANTED";
+                        if ("admin" == role){
+                            System.out.println("GRANTED");
+                            return "GRANTED";
+                        } else if ("Teacher" == role) {
+                            if (hour >= 18 && hour <= 21) {
+                                System.out.println("GRANTED");
+                                return "GRANTED";
+                            } else {
+                                return "AFTER HOURS";
+                            }
+                        } else if ("Student" == role) {
+                            return "AFTER HOURS";
+                        }
                     }
                 }
             }
