@@ -124,18 +124,20 @@ public class AccessControl {
                     System.out.println("DENIED");
                     return "DENIED";
                 } else {
-                    if (isAfterHours(hour) == true) {
+                    if (isAfterHours(hour) == false) {
+                        return "GRANTED";
+                    } else if (isAfterHours(hour) == true) {
                         if ("admin" == role){
                             System.out.println("GRANTED");
                             return "GRANTED";
-                        } else if ("Teacher" == role) {
+                        } else if ("teacher" == role) {
                             if (hour >= 18 && hour <= 21) {
                                 System.out.println("GRANTED");
                                 return "GRANTED";
                             } else {
                                 return "AFTER HOURS";
                             }
-                        } else if ("Student" == role) {
+                        } else if ("student" == role) {
                             return "AFTER HOURS";
                         }
                     }
@@ -157,13 +159,13 @@ public class AccessControl {
      *    In the comment below, show your work step by step, then return
      *    your simplified version.
      *
-     *    Step 1:
-     *    Step 2:
-     *    Final:
+     *    Step 1: !(failedAttempts < 3 && !accountLocked)
+     *    Step 2: (!failedAttempts < 3 && accountLocked)
+     *    Final: (failedAttempts >= 3 || accountLocked)
      */
     public static boolean isBlocked(int failedAttempts, boolean accountLocked) {
         // TODO - delete the next line and write your code
-        throw new UnsupportedOperationException("not started");
+        return (failedAttempts >= 3 || accountLocked);
     }
 
     /**
@@ -176,7 +178,13 @@ public class AccessControl {
      */
     public static String strengthRating(String password) {
         // TODO (stretch) - delete the next line and write your code
-        throw new UnsupportedOperationException("not started");
+        if (password.length() >= 12 && password.contains("!") || password.contains("@") || password.contains("#")) {
+            return "STRONG";
+        } else if (password.length() >= 8) {
+            return "MEDIUM";
+        } else {
+            return "WEAK";
+        }
     }
 
     /**
